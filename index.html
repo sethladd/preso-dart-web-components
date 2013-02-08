@@ -1346,6 +1346,38 @@ void main() {
   </article>
 </slide>
 
+<slide>
+  
+    <hgroup>
+      <h2>Simple Data Binding</h2>
+    </hgroup>
+
+    <article >
+
+<pre class="prettyprint lang-dart" data-lang="HTML">
+&lt;p>MDV is {{ superlative }}&lt;/p>
+
+&lt;button id="change-it" on-click="changeIt()">Change&lt;/button>
+</pre>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+import 'dart:math';
+
+String superlative = 'awesome';
+
+List<String> alternatives = const <String>['wicked cool', 'sweet', 'fantastic'];
+
+Random random = new Random();
+
+changeIt() => superlative = alternatives[random.nextInt(3)];
+
+main() { }
+</pre>
+
+</article>
+ 
+</slide>
+
 <slide class="fill highlight nobackground" style="background-image: url(images/chocolate-peanut-butter.jpg)">
   <hgroup>
     <h2>Summary</h2>
@@ -1357,9 +1389,9 @@ void main() {
           <li style="font-size:smaller">Dart isn't required, works with JavaScript, too</li>
         </ul>
       </li>
-      <li>Dart is structured, scalable, familiar</li>
+      <li><a href="http://www.dartlang.org">Dart</a> is structured, scalable, familiar</li>
       <li>We think they go well together</li>
-      <li>Please try them and send us feedback</li>
+      <li>Please try them and <a href="http://www.dartlang.org/mailing-list">send us feedback</a></li>
       <li>Thanks!</li>
     </ul>
   </article>
