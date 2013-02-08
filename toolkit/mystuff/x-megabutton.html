@@ -47,7 +47,7 @@ var audioController_ = new AudioController();
 this.component({
   ready: function() {
     this.node.addEventListener('click', this.megaClick.bind(this));
-      audioController_.load(location.origin + '/toolkit/mystuff/moo.mp3', function() {
+      audioController_.load(location.origin + 'toolkit/mystuff/moo.mp3', function() {
     }.bind(this));
   },
   publish: {
