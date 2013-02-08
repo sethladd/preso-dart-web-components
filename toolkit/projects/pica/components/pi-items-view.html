@@ -1,0 +1,68 @@
+<!--
+/*
+ * Copyright 2012 The Toolkitchen Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+-->
+<element name="pi-items-view" attributes="layout view">
+  <link rel="stylesheet" href="css/pi-items-view.css" />
+  <template>
+    <div class="view flexbox flex {{layout}} {{view}}">
+      <template iterate="boxes">
+        <div class="box flexbox">
+          <template iterate>
+            <div class="inner flexbox flex-column flex {{box}}">
+              <template iterate="items">
+                <div class="pi-item flexbox flex-column flex" on-click="itemClick">
+                  <div class="image flex" style="background-image: url({{imgSrc}});"></div>
+                  <div class="desc">{{desc}}</div>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </template>
+  <script>
+    this.component({
+      publish: {
+        items: null,
+        selected: null
+      },
+      process: function(inItems) {
+        var n = document.createElement('div');
+        inItems.forEach(function(item) {
+          // scrape image url
+          if (item.content) {
+            var m$ = item.content.match(/src="(.*?)"/);
+            item.imgSrc = m$ && m$[1];
+          }
+          // unescape html content
+          if (item.contentSnippet) {
+            n.innerHTML = item.contentSnippet;
+            item.desc = n.textContent;
+          }
+        });
+      },
+      itemsChanged: function() {
+        var b = [], l = this.items && this.items.length;
+        if (l) {
+          this.process(this.items);
+        }
+        for (var i=0; i < l; i += 4) {
+          b.push([
+            {box: 'one', items: this.items.slice(i, i+2)},
+            {box: 'two', items: this.items.slice(i+2, i+4)}
+          ]);
+        }
+        this.boxes = b;
+      },
+      itemClick: function(inEvent, inDetail, inSender) {
+        this.selected = inSender.model;
+        this.send('select', {item: inSender.model});
+      }
+    });
+  </script>
+</element>

@@ -1,0 +1,1376 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google IO 2012</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <!--<script src="demos/components/web_components_polyfill/src/components-polyfill.js"></script>-->
+  <script src="toolkit/polyfills/Components/components-polyfill.js" shadow="webkit"></script>
+  <link rel="components" href="toolkit/mystuff/x-gangnam-style.html"/>
+  <link rel="components" href="toolkit/mystuff/x-meme.html"/>
+  <link rel="components" href="toolkit/mystuff/x-megabutton.html"/>
+  <script>
+    Element.prototype.createShadowRoot = Element.prototype.webkitCreateShadowRoot;
+  </script>
+  <style>
+    .highlight {
+      background-color: #FFF899;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<!-- <slide class="logoslide nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo.png"></span>
+  </article>
+</slide> -->
+
+<slide id="first-slide" class="nobackground">
+</slide>
+
+<slide class="title-slide segue nobackground">
+  <!-- <aside class="gdbar"><img src="images/logos/webcomponents.png"></aside> -->
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <article class="auto-fadein">
+    <img src="images/logos/webcomponents.png">
+    <hgroup>
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </article>
+</slide>
+
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Demo</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p class="centered">
+  <code class="prettyprint">&lt;x-gangnam-style>&lt;/x-gangnam-style></code>
+</p>
+
+<style>
+/*Need to define these globally. Don't work in the component.
+See https://bugs.webkit.org/show_bug.cgi?id=72462 */
+@-webkit-keyframes psydroid-dance {
+  0% { top: 0; }
+  20% { top: 4px; }
+  30% { top: 0; }
+  50% { top: 4px; }
+  60% { top: 0; }
+  80% { top: 4px; }
+  90% { top: 0; }
+  100% { top: 0; }
+}
+@-webkit-keyframes psydroid-leg-l {
+  0% { top: 116px; }
+  10% { top: 116px; }
+  15% { top: 116px; }
+  25% { top: 116px; }
+  30% { top: 110px; }
+  40% { top: 116px; }
+  45% { top: 120px; }
+  55% { top: 116px; }
+  60% { top: 120px; }
+  70% { top: 116px; }
+  75% { top: 110px; }
+  85% { top: 116px; }
+  100% { top: 116px; }
+}
+@-webkit-keyframes psydroid-leg-r {
+  0% { top: 116px; }
+  10% { top: 120px; }
+  15% { top: 110px; }
+  25% { top: 116px; }
+  30% { top: 120px; }
+  40% { top: 116px; }
+  45% { top: 110px; }
+  55% { top: 116px; }
+  60% { top: 110px; }
+  70% { top: 116px; }
+  75% { top: 120px; }
+  85% { top: 116px; }
+  100% { top: 116px; }
+}
+@-webkit-keyframes psydroid-arm-l {
+  0% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  10% { -moz-transform: rotate(-60deg); -webkit-transform: rotate(-60deg); transform: rotate(-60deg); }
+  20% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-65deg); transform: rotate(-65deg); }
+  25% { -moz-transform: rotate(-55deg); -webkit-transform: rotate(-55deg); transform: rotate(-55deg); }
+  40% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-75deg); transform: rotate(-75deg); }
+  50% { -moz-transform: rotate(-60deg); -webkit-transform: rotate(-60deg); transform: rotate(-60deg); }
+  55% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-80deg); transform: rotate(-80deg); }
+  65% { -moz-transform: rotate(-55deg); -webkit-transform: rotate(-55deg); transform: rotate(-55deg); }
+  80% { -moz-transform: rotate(-65deg); -webkit-transform: rotate(-65deg); transform: rotate(-65deg); }
+  90% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+}
+@-webkit-keyframes psydroid-arm-r {
+  0% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  10% { -moz-transform: rotate(60deg); -webkit-transform: rotate(60deg); transform: rotate(60deg); }
+  20% { -moz-transform: rotate(65deg); -webkit-transform: rotate(65deg); transform: rotate(65deg); }
+  25% { -moz-transform: rotate(55deg); -webkit-transform: rotate(55deg); transform: rotate(55deg); }
+  40% { -moz-transform: rotate(65deg); -webkit-transform: rotate(75deg); transform: rotate(75deg); }
+  50% { -moz-transform: rotate(60deg); -webkit-transform: rotate(60deg); transform: rotate(60deg); }
+  55% { -moz-transform: rotate(65deg); -webkit-transform: rotate(80deg); transform: rotate(80deg); }
+  65% { -moz-transform: rotate(55deg); -webkit-transform: rotate(55deg); transform: rotate(55deg); }
+  80% { -moz-transform: rotate(65deg); -webkit-transform: rotate(65deg); transform: rotate(65deg); }
+  90% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(0deg); -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+}
+</style>
+
+<p class="centered topmargin">
+  <x-gangnam-style></x-gangnam-style>
+</p></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Demo</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p class="centered">
+  <code class="prettyprint">&lt;x-megabutton>Mega button&lt;/x-megabutton></code>
+</p>
+
+<p class="centered topmargin">
+  <x-megabutton>Mega button</x-megabutton>
+</p></article>
+ 
+</slide>
+
+<slide class="fill nobackground" style="background-image: url(images/div-soup.png)">
+
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Defining Web Components</h2>
+      <h3>key players</h3>
+    </hgroup>
+    <article ><ul class="build">
+<li><code>&lt;template&gt;</code>- <em>Scaffold/Blueprint</em><ul class="build">
+<li>inert chunks of clonable DOM</li>
+</ul>
+</li>
+<li>Shadow DOM - <em>Mortar/glue</em><ul class="build">
+<li>building blocks for encapsulation &amp; boundaries inside of DOM</li>
+</ul>
+</li>
+<li><code>&lt;element&gt;</code> (custom elements) - <em>Toolbelt</em><ul class="build">
+<li>create new HTML elements - expand HTML's existing vocabulary</li>
+<li>extend existing DOM objects with new imperative APIs</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide id="template-segue" class="segue nobackground highlight fill" style="background-image: url(images/bgs/drinksblueprint.jpg)">
+  
+    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Templates</h2>
+      <h3>scaffold / blueprint</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  class="nobackground funnyimage notnewconcept" style="background-image: url(images/animated/shock.gif)">
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Templates...</h2>
+      <h3>not<br> a new concept</h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Oldschool templates</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><em>Method #1</em>: "offscreen" DOM using <code>[hidden]</code> or <code>display:none</code></p>
+<pre class="prettyprint" data-lang="html">
+&lt;div id="mytemplate" hidden>
+  &lt;img src="logo.png">
+  &lt;div class="comment">&lt;/div>
+&lt;/div>
+</pre>
+
+<ol class="build">
+<li><label class="good"></label> We're working directly w/ DOM. </li>
+<li><label class="bad"></label> Resources are still loaded (e.g. that <code>&lt;img&gt;</code>)</li>
+<li><label class="bad"></label> Style and theming is painful.<ul class="build">
+<li>embedding page must scope all its CSS to <code>#mytemplate</code>.</li>
+<li>no guarantees on future naming collisions.</li>
+</ul>
+</li>
+</ol></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Oldschool templates</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><em>Method #2</em>: manipulating markup as string. Overload <code>&lt;script&gt;</code>:</p>
+<pre class="prettyprint" data-lang="js">
+&lt;script id="mytemplate" <b>type="text/x-handlebars-template"</b>>
+  &lt;img src="logo.png">
+  &lt;div class="comment">&lt;/div>
+&lt;/script>
+</pre>
+
+<ol>
+<li><label class="bad"></label> encourages run-time string parsing (via <code>.innerHTML</code>)<ul>
+<li>may include user-supplied data &rarr; XSS attacks.</li>
+</ul>
+</li>
+</ol>
+<p class="topmargin"></p>
+
+<p>Examples: <a href="http://handlebarsjs.com/">handlebars.js</a>, John Resig's <a href="http://ejohn.org/blog/javascript-micro-templating/">micro-template script</a></p></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/templates/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Proper templating</h2>
+      <h3><code>&lt;template&gt;</code></h3>
+    </hgroup>
+    <article ><p>Contains inert markup intended to be used later:</p>
+<pre class="prettyprint" data-lang="html">
+&lt;template id="mytemplate">
+  &lt;img src="">
+  &lt;div class="comment">&lt;/div>
+&lt;/template>
+</pre>
+
+<ol>
+<li><label class="good"></label> We're working directly w/ DOM again. </li>
+<li><label class="good"></label> Parsed, not rendered<ul>
+<li><code>&lt;script&gt;</code>s don't run, images aren't loaded, media doesn't play, etc.</li>
+</ul>
+</li>
+</ol></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2><code>&lt;template&gt;</code></h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Appending inert DOM to a node makes it go "live":</li>
+</ul>
+<pre class="prettyprint" data-lang="js">
+var t = document.querySelector('#mytemplate');
+t.content.querySelector('img').src = 'http://...';
+document.body.appendChild(<b>t.content.cloneNode(true)</b>);
+</pre>
+
+<div class="build">
+
+<div>
+<code>.content</code> provides access to the <code>&lt;template&gt;</code>'s guts:</p>
+
+<pre class="prettyprint" data-lang="interface">
+interface HTMLTemplateElement : HTMLElement {
+  attribute DocumentFragment content;
+}
+</pre>
+</div>
+
+</div></article>
+ 
+</slide>
+
+<slide  class="nobackground dirty-sexy funnyimage" style="background-image: url(images/animated/dirty-sexy-money.gif)">
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+      <h3>$$$</h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide id="shadow-dom-segue" class="segue nobackground highlight fill" style="background-image: url(images/bgs/blocks.jpg)">
+  
+    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Shadow DOM</h2>
+      <h3>mortar / glue</h3>
+    </hgroup>
+  
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Turns out...</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p class="centered build" style="font-size:40px;"><span>Browser vendor's have been holding out on us!</span></p>
+
+<ul class="build">
+<li>DOM nodes can already "host" hidden DOM.</li>
+<li>It can't be accessed traversing the DOM.</li>
+</ul>
+<div class="build shadowvideo">
+<video controls height="300" src="http://www.ioncannon.net/examples/vp8-webm/big_buck_bunny_480p.webm"></video>
+<p style="float:left;margin-left: 1em;">
+<input type="date" style="zoom:2"><br>
+<input type="time" style="zoom:2">
+</p>
+</div></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter centered defintion"><h2 class="auto-fadein">Shadow DOM</h2>
+
+<h3 class="auto-fadein">gives us encapsulation in the DOM and from JS</h3></article>
+ 
+</slide>
+
+<slide  class="nobackground funnyimage notnewconcept" style="background-image: url(images/animated/shock.gif)">
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Encapsulation...</h2>
+      <h3>not<br> a new concept</h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide id="shadow-dom-host"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Attaching Shadow DOM to a host</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter centered"><p><img src="images/shadow/shadow-trees.svg" style="height: 100%;"></p></article>
+ 
+</slide>
+
+<slide id="shadow-dom-render"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Shadow tree is rendered instead</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter centered"><p><img src="images/shadow/shadow-rendering.svg" style="height:100%;"></p>
+<div class="devtools" title="click me" alt="click me"></div></article>
+ 
+</slide>
+
+<slide id="shadow-dom-creating"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#extensions-to-element" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Creating Shadow DOM</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><aside class="note">
+  <section>
+    <img src="images/shadow/shadow-rendering.svg" style="width: 100%;">
+  </section>
+</aside>
+
+<pre class="prettyprint" data-lang="html">
+&lt;div id="host">
+  &lt;h1>My Title&lt;/h1>
+  &lt;h2>My Subtitle&lt;/h2>
+  &lt;div>...other content...&lt;/div>
+&lt;/div>
+</pre>
+
+<pre class="prettyprint" data-lang="js">
+var host = document.querySelector('#host');
+<b>var shadow = host.<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();</b>
+<b>shadow.innerHTML = '&lt;h2>Yo, you got replaced!&lt;/h2>' +
+                   '&lt;div>by my awesome content&lt;/div>';</b>
+// <b>host.<a data-tooltip-property="shadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js data-tooltip-js-property>shadowRoot</a>;</b>
+</pre>
+
+<div class="host">
+  <h1>My Title</h1>
+  <h2>My Subtitle</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-dom-creating .host').createShadowRoot();
+shadow.innerHTML = '<h2>Yo, you got replaced!</h2>' +
+                   '<div>by my awesome content</div>';
+})();
+</script></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter centered unstyled"><h2 class="auto-fadein">Unstyled markup != sexy</h2></article>
+ 
+</slide>
+
+<slide id="shadow-dom-style-encapsulation"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Style encapsulation</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><aside class="note">
+  <section>
+    <img src="images/shadow/shadow-rendering.svg" style="width: 100%;">
+  </section>
+</aside>
+
+<p><code>&lt;style&gt;</code>s defined in <code>ShadowRoot</code> are scoped.</p>
+<pre class="prettyprint" data-lang="js">
+var shadow = document.querySelector('#host').<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();
+shadow.innerHTML = '<b>&lt;style>h2 { color: red; }&lt;/style></b>' + 
+                   '&lt;h2>Yo, you got replaced!&lt;/h2>' + 
+                   '&lt;div>by my awesome content&lt;/div>';
+</pre>
+
+<div class="host">
+  <h1>My Title</h1>
+  <h2>My Subtitle</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-dom-style-encapsulation .host').createShadowRoot();
+shadow.innerHTML = '<style>h2 { color: red;}</style>' + 
+                   '<h2>Yo, you got replaced!</h2>' + 
+                   '<div>by my awesome content</div>';
+
+})();
+</script></article>
+ 
+</slide>
+
+<slide id="shadow-style-control"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Protection from the outside world</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><aside class="note">
+  <section>
+    <img src="images/shadow/shadow-rendering.svg" style="width: 100%;">
+  </section>
+</aside>
+
+<p>Author's styles don't cross shadow boundary by default.</p>
+<pre class="prettyprint" data-lang="js">
+var shadow = document.querySelector('#host').<a data-tooltip-property="createShadowRoot" data-tooltip-support='["webkit"]' data-tooltip-js>createShadowRoot</a>();
+shadow.innerHTML = '&lt;style>h2 { color: red; }&lt;/style>&lt;h2>Yo, you got replaced!&lt;/h2>' +
+                   '&lt;div>by my awesome content&lt;/div>';
+<b data-action-resetstyleinheritance title="click me">// shadow.resetStyleInheritance = true;</b> // click me
+<b data-action-applyauthorstyles title="click me">// shadow.applyAuthorStyles = true;</b> // click me
+</pre>
+
+<div class="host" style="margin-bottom:1em;">
+  <h1>My Title</h1>
+  <h2>My Subtitle</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-style-control .host').createShadowRoot();
+// See crbug.com/162517 - !important needed for some reason.
+shadow.innerHTML = '<style>h2 { color: red !important;}</style>' + 
+                   '<h2>Yo, you got replaced!</h2>' + 
+                   '<div>by my awesome content</div>';
+
+var resetStyles = document.querySelector('#shadow-style-control [data-action-resetstyleinheritance]');
+resetStyles.addEventListener('click', function(e) {
+  shadow.resetStyleInheritance = !shadow.resetStyleInheritance;
+  this.textContent = 'shadow.resetStyleInheritance = ' + shadow.resetStyleInheritance.toString() + ';';
+});
+var applyAuthorStyles = document.querySelector('#shadow-style-control [data-action-applyauthorstyles]');
+applyAuthorStyles.addEventListener('click', function(e) {
+  shadow.applyAuthorStyles = !shadow.applyAuthorStyles;
+  this.textContent = 'shadow.applyAuthorStyles = ' + shadow.applyAuthorStyles.toString() + ';';
+});
+
+})();
+</script></article>
+ 
+</slide>
+
+<slide id="shadow-host-at"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Styling the host element</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Allows reacting to different states:</li>
+</ul>
+<pre class="prettyprint" data-lang="css">
+&lt;style>
+<b>@host</b> {
+  /* Gotcha: higher specificity than any selector, lower than &lt;style&gt; attribute. */
+  * {
+    opacity: 0.2; <a data-tooltip-property="transition" data-tooltip-support='["webkit", "moz", "ms", "o", "unprefixed"]'>transition</a>: opacity 400ms ease-in-out;
+  }
+  *:hover { opacity: 1; }
+}
+&lt;/style>
+</pre>
+
+<div class="host">
+  <h1>My Title</h1>
+  <h2>My Subtitle</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-host-at .host').createShadowRoot();
+shadow.innerHTML = '<style>h2 { color: red;}' +
+'@host {\
+  * {\
+    opacity: 0.2;\
+    -webkit-transition: opacity 400ms ease-in-out;\
+  }\
+  *:hover {\
+    opacity: 1;\
+  }\
+}</style>' + 
+'<h2>Yo, you got replaced!</h2>' + 
+'<div>by my awesome content</div>';
+
+})();
+</script></article>
+ 
+</slide>
+
+<slide id="pseduo-element-styling"  >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#custom-pseudo-elements" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Custom pseudo elements</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><aside class="note notnewconcept funnyimage">
+  <section>
+    <h2>Custom pseudo elements...</h3>
+    <img src="images/animated/shock.gif" style="width: 100%;">
+    <h3>Not<br>a new concept</h3>
+  </section>
+</aside>
+
+<p class="input-list centered">
+<input type="range">
+</p>
+
+<div class="build">
+<pre class="prettyprint" data-lang="css">
+input[type=range].custom {
+  -webkit-appearance: none;
+  background-color: red;
+}
+input[type=range].custom<b>::-webkit-slider-thumb</b> {
+  -webkit-appearance: none;
+  background-color: blue;
+  width: 10px;
+  height: 40px;
+}
+</pre>
+
+<p class="build input-list centered">
+<span><input type="range" class="custom"></span>
+<span><input type="range" class="custom bling"></span>
+</p>
+</div>
+
+<p>List of pseudo elements: <a href="http://trac.webkit.org/browser/trunk/Source/WebCore/css/html.css?format=txt">WebKit</a>, <a href="https://developer.mozilla.org/en-US/docs/CSS/CSS_Reference/Mozilla_Extensions#Pseudo-elements_and_pseudo-classes">FF</a></p></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Style hooks: custom pseudo elements</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Author allow certain elements to be styled by outsiders.</p>
+<pre class="prettyprint" data-lang="html">
+&lt;style>
+  #host<b>::x-slider-thumb</b> {
+    background-color: blue;
+  }
+&lt;/style>
+&lt;div id="host">&lt;/div>
+&lt;script>
+document.querySelector('#host').createShadowRoot().innerHTML = '&lt;div>' +
+  '&lt;div <b>pseudo="x-slider-thumb"</b>>&lt;/div>' + 
+'&lt;/div>';
+&lt;/script>
+</pre>
+
+<ul>
+<li>Name needs to be prefixed with "<code>x-</code>"</li>
+<li>Can't access from outside JS, but can style them!</li>
+</ul></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dev.w3.org/csswg/css-variables/" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Style hooks: CSS Variables</h2>
+      <h3>theming</h3>
+    </hgroup>
+    <article ><p><strong>Author</strong> includes variable placeholders:</p>
+<pre class="prettyprint" data-lang="shadow dom css">
+button {
+  color: <a data-tooltip-property="var" data-tooltip-support='["webkit", "unprefixed"]'>var</a>(button-text-color);
+  font: <a data-tooltip-property="var" data-tooltip-support='["webkit", "unprefixed"]'>var</a>(button-font);
+}
+</pre>
+
+<p><strong>Embedder</strong> applies styles to the element:</p>
+<pre class="prettyprint" data-lang="css">
+#host {
+  <b><a data-tooltip-property="var" data-tooltip-support='["webkit", "unprefixed"]'>var</a>-button-text-color</b>: green;
+  <b><a data-tooltip-property="var" data-tooltip-support='["webkit", "unprefixed"]'>var</a>-button-font</b>: "Comic Sans MS", "Comic Sans", cursive;
+}
+</pre>
+
+<p class="centered">
+<a href="demos/page.html" class="demo">DEMO</a>
+</p></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Remember our host node</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="html">
+&lt;div id="host">
+  &lt;h1>My Title&lt;/h1>
+  &lt;h2>My Subtitle&lt;/h2>
+  &lt;div>...other content...&lt;/div>
+&lt;/div>
+</pre>
+
+<p>that guy rendered as:</p>
+<pre class="prettyprint" data-lang="html">
+&lt;div id="host">
+  <span style="opacity:0.5">#document-fragment</span>
+    &lt;style>h2 {color: red;}&lt;/style>
+    &lt;h2>Yo, you got replaced!&lt;/h2>
+    &lt;div>by my awesome content&lt;/div>
+&lt;/div>
+</pre>
+
+<p>...everything was replaced when we attached the shadow DOM <label class="bad"></label></p></article>
+ 
+</slide>
+
+<slide id="insertion-points2"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Insertion points</h2>
+      <h3>funnels for host's children</h3>
+    </hgroup>
+    <article class="flexbox vcenter centered build"><div class="auto-fadein"></div></article>
+ 
+</slide>
+
+<slide id="shadow-dom-insertion-pts-example"  >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Insertion points</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li><code>content.getDistributedNodes()</code>: list of elements distributed in the insertion point.</li>
+</ul>
+<div class="columns-2">
+<pre class="prettyprint" data-lang="host">
+&lt;div id="host"&gt;
+  &lt;h1&gt;My Title&lt;/h1&gt;
+  &lt;h2&gt;My Subtitle&lt;/h2&gt;
+  &lt;div&gt;...other content...&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<pre class="prettyprint" data-lang="Shadow DOM" style="-webkit-column-break-before: always;">
+&lt;style>
+  h2 {color: red;}
+&lt;/style>
+&lt;hgroup>
+  <b>&lt;content select="h2">&lt;/content&gt;</b>
+  &lt;div&gt;You got enhanced&lt;/div&gt;
+  <b>&lt;content select="h1:first-child">&lt;/content&gt;</b>
+&lt;/hgroup>
+<b>&lt;content select="*">&lt;/content&gt;</b>
+</pre>
+</div>
+
+<div class="host">
+  <h1>My Title</h1>
+  <h2>My Subtitle</h2>
+  <div>...other content...</div>
+</div>
+
+<script>
+(function() {
+var shadow = document.querySelector('#shadow-dom-insertion-pts-example .host').createShadowRoot();
+shadow.innerHTML = '<style>\
+h2 { color: red;}\
+</style>\
+<hgroup>\
+  <content select="h2"></content>\
+  <div>You got enhanced</div>\
+  <content select="h1:first-child"></content>\
+</hgroup>\
+<content select="*"></content>';
+})();
+</script></article>
+ 
+</slide>
+
+<slide  class="nobackground funnyimage" style="background-image: url(images/animated/irish-flick.gif)">
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Cha-</h2>
+      <h3>ching!</h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide  class="segue nobackground highlight fill" style="background-image: url(images/bgs/istock-lasanga.jpg)">
+  
+    <aside class="gdbar"><img src="images/logos/chrome_logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Custom Elements</h2>
+      <h3>Putting it all together</h3>
+    </hgroup>
+  
+</slide>
+
+<slide class=" nobackground">
+  <hgroup>
+    <h2>Encapsulation</h2>
+  </hgroup>
+      <article class="flexbox vcenter">
+      <img src="images/custom-elements-encapsulate.png">
+    </article>
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#declaring-custom-elements" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Creating custom elements</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Define a <em>declarative</em> "API" using insertion points:</p>
+<pre class="prettyprint" data-lang="x-tabs.html">
+<b>&lt;element name="x-tabs"></b>
+  &lt;template>
+    &lt;style>...&lt;/style>
+    &lt;content select="hgroup:first-child">&lt;/content>
+  &lt;/template>
+<b>&lt;/element></b>
+</pre>
+
+<p>Include and use it:</p>
+<pre class="prettyprint" data-lang="yourapp.html">
+&lt;link <b>rel="components"</b> href="x-tabs.html"&gt;
+&lt;x-tabs>
+  &lt;hgroup>
+    &lt;h2>Title&lt;/h2>
+    ...
+  &lt;/hgroup>
+&lt;/x-tabs>
+</pre></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+          <a href="http://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#declaring-custom-elements" target="_blank" class="spec" title="Spec link"></a>
+        
+      </span>
+      <h2>Define an imperative API</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="x-tabs.html">
+&lt;element name="x-tabs" <b>constructor="TabsController"></b>
+  &lt;template>...&lt;/template>
+  <b>&lt;script&gt;
+    TabsController.prototype = {
+      doSomething: function() { ... }
+    };
+  &lt;/script&gt;</b>
+&lt;/element>
+</pre>
+
+<p>Declared <code>constructor</code> goes on global scope:</p>
+<pre class="prettyprint" data-lang="yourapp.html">
+&lt;link rel="components" href="x-tabs.html"&gt;
+&lt;script&gt;
+<b>var tabs = new TabsController();</b> // or document.createElement('x-tabs')
+tabs.addEventListener('click', function(e) { <b>e.target.doSomething();</b> });
+document.body.appendChild(tabs);
+&lt;/script&gt;
+</pre></article>
+ 
+</slide>
+
+<slide   >
+  
+    <hgroup>
+      <span>
+        
+        
+      </span>
+      <h2>Or, extend elements</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="x-megabutton.html">
+
+&lt;element name="x-megabutton" <b>extends="button"</b> <b>constructor="MegaButton"</b>&gt;
+  &lt;template>
+    &lt;content>&lt;/content>
+  &lt;/template>
+  &lt;script>
+    MegaButton.prototype = {
+      megaClick: function(e) { alert('BOOM!'); }
+    };
+  &lt;/script>
+&lt;/element>
+</pre>
+
+<p>Use it:</p>
+<pre class="prettyprint" data-lang="yourapp.html">
+&lt;link rel="components" href="x-megabutton.html">
+&lt;x-megabutton>Mega button&lt;/x-megabutton>
+</pre></article>
+ 
+</slide>
+
+  <slide>
+    <hgroup>
+      <h2>You want this awesome</h2>
+    </hgroup>
+    <article>
+      <div class="centered" style="margin-bottom: 20px"><img src="images/varuca-salt.jpg" class="reflect"></div>
+      <ul>
+        <li>Shadow DOM, &lt;template&gt; coming real soon to Chrome</li>
+        <li>There's another option...</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide  class="nobackground funnyimage" style="background-image: url(images/2-exciting-features.jpg)">
+ 
+</slide>
+
+<slide  class="segue nobackground highlight fill" style="background-image: url(images/batteries.jpg)">
+  <aside class="gdbar"><img src="images/logos/dart.png"></aside>
+    <hgroup class="auto-fadein" style="bottom:150px">
+      <div style="background-color: white; opacity: 0.95; padding: 25px; padding-right: 150px; border-radius: 5px">
+      <h2 style="margin-bottom: 20px">Dart</h2>
+      <ul>
+        <li>Language, libraries, tools, editor, VM, package manager
+        <li>Familar, structured, scalable
+        <li>Web Components polyfill for modern browsers
+        <li>Open Source, <em>Compiles to JavaScript</em>
+      </ul>
+    </div>
+    </hgroup>
+</slide>
+
+<slide  class="segue nobackground highlight fill" style="background-image: url(images/complex-apps.jpg)">
+  <aside class="gdbar"><img src="images/logos/dart.png"></aside>
+    <hgroup class="auto-fadein" >
+      <div style="background-color: white; opacity: 0.95; padding: 25px; border-radius: 5px">
+      <h2>Why Dart?</h2>
+      <h3>More developers building more complex apps for the modern web</h3>
+      </div>
+    </hgroup>
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>The Java you know</h2>
+    </hgroup>
+    <article ><pre class="prettyprint lang-java" data-lang="Java">
+public class Money {
+  private int amount;
+  public Money(double amount) { this.amount = Math.floor(amount * 100); }
+  public Money(int amount) { this.amount = amount; }
+  public Money(String amount) { this(Double.parseDouble(amount); }
+
+  public Money add(Money other) { return new Money(this.amount + other.amount); }
+  public Money add(Money other, boolean chargeTax) {
+    return new Money(add(other).amount * 0.93);
+  }
+
+  public int getAmount() { return amount; }
+}
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>The Dart you'll love</h2>
+    </hgroup>
+    <article ><pre class="prettyprint lang-dart" data-lang="Dart">
+class Money {
+  final int amount;
+  static final Money ZERO = new Money(0);
+  
+  Money(this.amount);
+  Money.fromDouble(double amount) : this((amount*100).toInt());
+
+  Money add(Money other, {bool chargeTax: false}) {
+    var newAmount = (this.amount + other.amount) * (chargeTax ? 0.93 : 1.0);
+    return new Money(newAmount.toInt());
+  }
+
+  Money operator +(Money other) => add(other);
+  
+  String toString() => amount.toString();
+}
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Lexical this</h2>
+    </hgroup>
+    <article ><pre class="prettyprint lang-dart" data-lang="Dart">
+class AwesomeButton {
+  int awesomeDial;
+  ButtonElement elem;
+
+  AwesomeButton(this.elem) {
+    elem.on.click.add((e) =&gt; <span class="highlight">crankTheAwesome()</span>);
+  }
+
+  <span class="highlight">crankTheAwesome()</span> {
+    awesomeDial = 11;
+  }
+}
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Easy to understand</h2>
+    </hgroup>
+
+    <article >
+
+<pre class="prettyprint lang-dart" data-lang="Dart w/o optional types">
+recalculate(origin, offset, estimate) {
+  ...
+}
+</pre>
+
+<pre class="prettyprint lang-dart" data-lang="Dart w/ optional types">
+
+num recalculate(Point origin, num offset, {bool estimate: false}) {
+  ...
+}
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Easy DOM</h2>
+    </hgroup>
+
+    <article >
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+
+import 'dart:html';
+
+void main() {
+  var button = new ButtonElement();
+
+  button.text = 'Click me';
+  button.classes.add('important');
+
+  button.onClick.listen((e) => window.alert('Clicked!!'));
+
+  document.body.elements.add(button);
+}
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Method Cascades</h2>
+    </hgroup>
+
+    <article >
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+
+import 'dart:html';
+
+void main() {
+  var button = new ButtonElement()
+       ..text = 'Click me'
+       ..classes.add('important')
+       ..onClick.listen((e) => window.alert('Clicked!!'));
+
+  document.body.elements.add(button);
+}
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide class=" nobackground">
+  <hgroup>
+    <h2>Compiling to JavaScript</h2>
+  </hgroup>
+      <article class="flexbox vcenter">
+      <img src="images/compile-to-javascript-process.png">
+    </article>
+</slide>
+
+<slide class=" nobackground">
+  <hgroup>
+    <h2>Easy debugging with Source Maps</h2>
+  </hgroup>
+      <article class="flexbox vcenter">
+      <img src="images/source-maps.png">
+    </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Size is important, but...</h2>
+  </hgroup>
+  <article class="flexbox vcenter">
+    <p>
+      <img src="images/tree-shaking/jquery.png">
+      <img src="images/tree-shaking/zepto.png">
+      <img src="images/tree-shaking/dojo.png">
+    </p>
+
+      <p>
+        Stop paying the complete library tax
+      </p>
+  </article>
+</slide>
+
+<slide>
+  <article class="flexbox vcenter">
+    <img src="images/tree-shaking/dart-tree-shaking.png">
+  </article>
+</slide>
+
+<slide class=" nobackground">
+  <hgroup>
+    <h2>Package Management with Pub</h2>
+  </hgroup>
+      <article class="flexbox vcenter">
+      <img src="images/dart-pub.png">
+    </article>
+</slide>
+
+<slide>
+  <article class="flexbox vcenter">
+    <img src="images/dart-vm-performance.png">
+  </article>
+</slide>
+
+<slide class="segue nobackground highlight fill" style="background-image: url(images/chocolate-peanut-butter.jpg)">
+  
+    <aside class="gdbar"><img src="images/logos/dart.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Dart with Web Components</h2>
+      <h3>A structured language for a component future</h3>
+    </hgroup>
+  
+</slide>
+
+
+<slide>
+  <hgroup>
+    <h2>Dart Web UI</h2>
+  </hgroup>
+  <article>
+    <ul class="build">
+      <li>Web Components polyfill</li>
+      <li>Dynamic data driven templates with live two-way bindings</li>
+      <li>Fast developer cycles</li>
+      <li>Compiles to JavaScript/HTML to <em>work across modern browsers today</em></li>
+    </ul>
+  </article>
+</slide>
+
+<slide>
+  <hgroup>
+    <h2>Dart Web UI Demos</h2>
+  </hgroup>
+  <article>
+    <ul class="build">
+      <li>Simple data binding - HelloWorld.html</li>
+      <li>Timer bindings w/ lifecycle events - clock_page.html</li>
+      <li>Conditionals - Conditional.html</li>
+      <li>Iterations - Iterate.html</li>
+      <li>Complex Object Binding - ComplexObjectBinding.html</li>
+      <li>Custom elements - Ludicrously Simple TODO</li>
+      <li>Calling methods on custom elements - CallMethodOnCustomElement.html</li>
+      <li><a href="http://dart-lang.github.com/web-ui/example/todomvc/index.html" target="_blank">TodoMVC Demo</a> -
+        <a href="https://github.com/dart-lang/web-ui/tree/master/example/todomvc" target="_blank">code</a></li>
+      <li><a href="http://kevmoo.github.com/widget.dart/" target="_blank">Bootstrap widgets demo</a> -
+        <a href="https://github.com/kevmoo/widget.dart" target="_blank">code</a></li>
+    </ul>
+  </article>
+</slide>
+
+<slide class="fill highlight nobackground" style="background-image: url(images/chocolate-peanut-butter.jpg)">
+  <hgroup>
+    <h2>Summary</h2>
+  </hgroup>
+  <article style="background-color: white; opacity: 0.95; padding: 40px; border-radius: 5px">
+    <ul style="color: black">
+      <li>Web Components are composable, declarative, reusable
+        <ul>
+          <li style="font-size:smaller">Dart isn't required, works with JavaScript, too</li>
+        </ul>
+      </li>
+      <li>Dart is structured, scalable, familiar</li>
+      <li>We think they go well together</li>
+      <li>Please try them and send us feedback</li>
+      <li>Thanks!</li>
+    </ul>
+  </article>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<!-- <script src="js/angular.min.js"></script> -->
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

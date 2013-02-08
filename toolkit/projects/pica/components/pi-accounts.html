@@ -1,0 +1,48 @@
+<!--
+/*
+ * Copyright 2012 The Toolkitchen Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+-->
+<element name="pi-accounts">
+  <link rel="stylesheet" href="css/pi-accounts.css" />
+  <link rel="components" href="pi-accounts-model.html"/>
+  <link rel="components" href="../../../toolkit/src/g-icon-button.html"/>
+  <template>
+    <div class="header item">Topics</div>
+    <div>
+      <template iterate="accounts.topics">
+        <div class="item">
+          <div class="flex">{{title}}</div>
+          <g-icon-button src="../images/close.svg" on-click="removeTopic"></g-icon-button>
+        </div>
+      </template>
+    </div>
+    <div class="item">
+      Name: <input id="name" />
+      Feed: <input id="feed" class="flex"/>
+      <g-icon-button src="../images/add.svg" on-click="addTopic"></g-icon-button>
+    </div>
+    <!-- <pi-accounts-model id="accounts"></pi-accounts-model> -->
+  </template>
+  <script>
+    this.component({
+      publish: {
+        accounts: null
+      },
+      addTopic: function() {
+        var n = this.$.name.value;
+        var f = this.$.feed.value;
+        if (n && f) {
+          this.accounts.addTopic({title: n, feed: f})
+          this.$.name.value = '';
+          this.$.feed.value = '';
+        }
+      },
+      removeTopic: function(inEvent, inDetail, inSender) {
+        this.accounts.removeTopic(inSender.model);
+      }
+    });
+  </script>
+</element>

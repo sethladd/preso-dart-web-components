@@ -1,0 +1,65 @@
+<!--
+/*
+ * Copyright 2012 The Toolkitchen Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+-->
+<element name="pi-app">
+  <link rel="stylesheet" href="css/pi-app.css" />
+  <link rel="components" href="../../../toolkit/src/g-component.html">
+  <link rel="components" href="../../../toolkit/src/g-panels.html"/>
+  <link rel="components" href="../../../toolkit/src/g-menu-item.html"/>
+  <link rel="components" href="pi-ribbon.html"/>
+  <link rel="components" href="pi-toolbar.html"/>
+  <link rel="components" href="pi-feed-viewer.html"/>
+  <link rel="components" href="pi-home.html"/>
+  <link rel="components" href="pi-accounts.html"/>
+  <template>
+    <g-panels id="panels" selected="{{selectedPanel}}" transition="flow">
+      <pi-ribbon id="ribbon" label="Pica" selected="{{ribbonSelected}}">
+        <g-menu-item name="Home" src="../images/ribbon_trending.svg">Home</g-menu-item>
+        <g-menu-item name="Topics" src="../images/ribbon_topics.svg">Topics</g-menu-item>
+        <g-menu-item name="Accounts" src="../images/ribbon_accounts.svg">Accounts</g-menu-item>
+      </pi-ribbon>
+      <div id="main" on-click="showMain">
+        <pi-toolbar label="{{ribbonSelected}}" layout="{{layout}}" panel="{{selectedPanel}}" subpanel="{{topicsSelectedPanel}}"
+            on-nav="navClick" on-source="toggleSource"></pi-toolbar>
+        <g-panels id="contentPanels" selected="{{ribbonSelected}}">
+          <pi-home id="Home"></pi-home>
+          <pi-feed-viewer id="Topics" topics="{{$.accountsModel.topics}}" panel="{{topicsSelectedPanel}}" layout="{{layout}}"></pi-feed-viewer>
+          <pi-accounts id="Accounts" accounts="{{$.accountsModel}}"></pi-accounts>
+        </g-panels>
+      </div>
+      <div id="source" class="right" on-click="toggleSource"></div>
+    </g-panels>
+    <pi-accounts-model id="accountsModel"></pi-accounts-model>
+  </template>
+  <script>
+    this.component({
+      ribbonSelected: 'Topics',
+      layout: 'grid',
+      selectedPanel: 'main',
+      topicsSelectedPanel: 'topics',
+      navClick: function() {
+        if (this.topicsSelectedPanel == 'topics') {
+          this.toggleNav();
+        } else {
+          this.$.Topics.previous();
+        }
+      },
+      toggleNav: function() {
+        this.$.panels.toggleBetween('ribbon', 'main');
+      },
+      toggleSource: function() {
+        this.$.panels.toggleBetween('main', 'source');
+      },
+      ribbonSelectedChanged: function() {
+        this.showMain();
+      },
+      showMain: function() {
+        this.selectedPanel = 'main';
+      }
+    });
+  </script>
+</element>

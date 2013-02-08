@@ -1,0 +1,78 @@
+/*
+ * Copyright 2012 The Toolkitchen Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+@host {
+  display: -webkit-flex;
+  display: -webkit-box;
+}
+
+g-panels {
+  -webkit-flex: 1;
+  -webkit-box-flex: 1;
+  overflow: hidden;
+}
+
+#ribbon {
+  width: 260px;
+  background-color: #333;
+  color: white;
+  font-size: 15px;
+  overflow: auto;
+}
+
+#ribbon.narrow-layout {
+  /* TODO(sorvell); calc + transitions crash safari so abort */
+  /*width: -webkit-calc(100% - 60px);
+  width: calc(100% - 60px);*/
+  left: 0;
+  right: 60px;
+  width: auto;
+}
+
+#source.narrow-layout {
+  left: 60px;
+  width: auto;
+  right: 0;
+}
+
+#main {
+  display: -webkit-flex;
+  display: -webkit-box;
+  -webkit-flex-flow: column;
+  -webkit-box-orient: vertical;
+  background: white; 
+}
+
+#source {
+  width: 340px;
+  background-color: #4D4D4D;
+}
+
+g-toolbar > label {
+  display: -webkit-flex;
+  display: -webkit-box;
+  font-size: 21px;
+}
+
+/* FIXME(ffu): temp fix; should move the fix to g-toolbar */
+g-toolbar {
+  display: -webkit-box;
+  -webkit-box-align: center;
+}
+
+.flex {
+  -webkit-flex: 1;
+  -webkit-box-flex: 1;
+}
+
+@media screen and (max-width: 800px) {
+  g-toolbar > label {
+    -webkit-justify-content: center;
+  }
+
+  #contentPanels {
+    margin-bottom: 60px;
+  }
+}

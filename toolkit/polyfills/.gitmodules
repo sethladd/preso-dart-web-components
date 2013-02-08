@@ -1,0 +1,12 @@
+[submodule "third_party/mocha"]
+	path = third_party/mocha
+	url = https://github.com/visionmedia/mocha.git
+[submodule "third_party/chai"]
+	path = third_party/chai
+	url = https://github.com/chaijs/chai.git
+[submodule "web-animations-js"]
+	path = web-animations-js
+	url = https://github.com/web-animations/web-animations-js.git
+[submodule "Components/MDV/mdv-polyfill"]
+	path = Components/MDV/mdv-polyfill
+	url = https://github.com/toolkitchen/mdv.git

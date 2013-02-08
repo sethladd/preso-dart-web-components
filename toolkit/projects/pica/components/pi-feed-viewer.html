@@ -1,0 +1,66 @@
+<!--
+/*
+ * Copyright 2012 The Toolkitchen Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+-->
+<element name="pi-feed-viewer" attributes="panel layout" on-keydown="keydownHandler">
+  <link rel="stylesheet" href="css/pi-feed-viewer.css" />
+  <link rel="components" href="../../../toolkit/src/g-panels.html"/>
+  <link rel="components" href="pi-gfeeds.html"/>
+  <link rel="components" href="pi-items-view.html"/>
+  <link rel="components" href="pi-detail.html"/>
+  <template>
+    <g-panels id="panels" selected="{{panel}}" transition="keyframe" class="g-panels-scale-slide">
+      <pi-items-view id="topics" layout="{{layout}}" items="{{topics}}" view="topics" selected="{{selectedTopic}}" on-select="topicSelect"></pi-items-view>
+      <pi-items-view id="stories" layout="{{layout}}" items="{{stories}}" selected="{{currentStory}}" on-select="storySelect"></pi-items-view>
+      <pi-detail id="detail" title="{{currentStory.title}}" content="{{currentStory.content}}"></pi-detail>
+    </g-panels>
+    <div id="loading" loading="{{$.gfeeds.loading}}">Loading...</div>
+    <pi-gfeeds id="gfeeds" feed="{{selectedTopic.feed}}" count="24" entries="{{stories}}"></pi-gfeeds>
+  </template>
+  <script>
+    this.component({
+      publish: {
+        topics: null,
+        previous: function() {
+          this.$.panels.previous();
+        }
+      },
+      ready: function() {
+        var mq = window.matchMedia('(max-width: 800px)');
+        mq.addListener(this.layoutChange.bind(this));
+        this.layoutChange(mq);
+      },
+      layoutChange: function(inQuery) {
+        this.$.panels.className = inQuery.matches ? 'g-panels-fly-up-right' : 'g-panels-scale-slide';
+      },
+      topicSelect: function() {
+        this.panel = 'stories';
+      },
+      storySelect: function() {
+        this.panel = 'detail';
+      },
+      nextPrevStory: function(inPrev) {
+        var i = this.stories.indexOf(this.currentStory);
+        var s = this.stories[i + (inPrev ? -1 : 1)];
+        if (s) {
+          this.currentStory = s;
+          return true;
+        }
+      },
+      keydownHandler: function(e) {
+        var p = false;
+        if (e.keyCode == 38) {
+          p = this.nextPrevStory();
+        } else if (e.keyCode == 40) {
+          p = this.nextPrevStory(true);
+        }
+        if (p) {
+          e.stopPropagation();
+        }
+      }
+    });
+  </script>
+</element>
