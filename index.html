@@ -1365,11 +1365,11 @@ import 'dart:math';
 
 String superlative = 'awesome';
 
-List<String> alternatives = const <String>['wicked cool', 'sweet', 'fantastic'];
+List&lt;String&gt; alternatives = const &lt;String&gt;['wicked cool', 'sweet', 'fantastic'];
 
 Random random = new Random();
 
-changeIt() => superlative = alternatives[random.nextInt(3)];
+changeIt() =&amp;gt; superlative = alternatives[random.nextInt(3)];
 
 main() { }
 </pre>
@@ -1377,6 +1377,120 @@ main() { }
 </article>
  
 </slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Conditionals</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+<pre class="prettyprint lang-dart" data-lang="HTML">
+&lt;select name=&quot;language&quot; bind-value=&quot;langChoice&quot;&gt;
+  &lt;option value=&quot;&quot;&gt;-- Choose one --&lt;/option&gt;
+  &lt;option value=&quot;js&quot;&gt;JavaScript&lt;/option&gt;
+  &lt;option value=&quot;java&quot;&gt;Java&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;div template if=&quot;langChoice != null &amp;&amp; !langChoice.isEmpty&quot;&gt;
+  &lt;h3&gt;{{ langChoice }}&lt;/h3&gt;
+  
+  &lt;code&gt;&lt;pre&gt;{{ languageExamples[langChoice] }}&lt;/pre&gt;&lt;/code&gt;
+&lt;/div&gt;
+</pre>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+Map<String, String> languageExamples = <String, String>{
+  'js': 'function Person(firstName, lastName) { ... };',
+  'java': 'public class Person { ... }'
+};
+
+String langChoice = '';
+
+main() { }
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Iteration</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+<pre class="prettyprint lang-dart" data-lang="HTML">
+&lt;ul template iterate=&quot;feature in features&quot;&gt;
+  &lt;li&gt;
+    &lt;label&gt;
+      &lt;input type=&quot;checkbox&quot; value=&quot;{{ feature }}&quot;
+             on-click=&quot;addToFavorites($event)&quot;&gt;
+      {{ feature }}
+    &lt;/label&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+import 'dart:html';
+
+List&lt;String&gt; features = const &lt;String&gt;['lexical scope', 'closures', 'getters and setters', ...];
+List&lt;String&gt; userFavorites = new List&lt;String&gt;();
+
+addToFavorites(Event e) {
+  InputElement checkbox = e.target;
+  var fav = checkbox.value;
+  
+  // add or remove from userFavorites
+}
+
+main() { }
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Lifecycle Events</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+<pre class="prettyprint lang-dart" data-lang="HTML">
+&lt;h1&gt;Web UI FTW!&lt;/h1&gt;  
+ 
+&lt;x-clock&gt;&lt;/x-clock&gt; 
+</pre>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+class Clock extends WebComponent {
+  Date time = new Date.now();
+  Timer timer;
+  
+  inserted() {
+    timer = new Timer.repeating(1000, (t) {
+      time = new Date.now();
+      watchers.dispatch();
+    });
+  }
+  
+  removed() {
+    timer.cancel();
+  }
+}
+</pre>
+
+</article>
+ 
+</slide>
+
 
 <slide class="fill highlight nobackground" style="background-image: url(images/chocolate-peanut-butter.jpg)">
   <hgroup>
