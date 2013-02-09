@@ -1641,6 +1641,38 @@ class Clock extends WebComponent {
  
 </slide>
 
+<slide>
+  
+    <hgroup>
+      <h2>Call Custom Method on Custom Element</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+<pre class="prettyprint lang-html" data-lang="HTML">
+&lt;div is=&quot;x-fancy&quot;&gt;&lt;/div&gt;
+
+&lt;element name=&quot;x-fancy&quot; extends=&quot;div&quot;&gt;
+  &lt;template&gt;
+    This is fancy!
+  &lt;/template&gt;
+  &lt;script type=&quot;application/dart&quot;&gt;
+  import 'package:web_ui/web_ui.dart';
+  class Fancy extends WebComponent {
+    beFancy() {
+      appendText(&quot;So wear a bow tie&quot;);
+    }
+  }
+  &lt;/script&gt;
+&lt;/element&gt;
+
+&lt;button on-click=&quot;query('div[is=x-fancy]').xtag.beFancy()&quot;&gt;Class it up&lt;/button&gt;
+</pre>
+
+</article>
+ 
+</slide>
+
 
 <slide class="fill highlight nobackground" style="background-image: url(images/chocolate-peanut-butter.jpg)">
   <hgroup>
