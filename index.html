@@ -1458,6 +1458,156 @@ main() { }
 <slide>
   
     <hgroup>
+      <h2>Complex Object Binding</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+<pre class="prettyprint lang-dart" data-lang="HTML">
+&lt;input type=&quot;text&quot; name=&quot;firstName&quot; bind-value=&quot;person.firstName&quot; placeholder=&quot;First name&quot;&gt;
+&lt;input type=&quot;text&quot; name=&quot;lastName&quot; bind-value=&quot;person.lastName&quot; placeholder=&quot;Last name&quot;&gt;
+
+&lt;div class=&quot;full-name&quot;&gt;{{ person.firstName }} {{ person.lastName }}&lt;/div&gt;
+</pre>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+class Person {
+  String firstName;
+  String lastName;
+  Address address;
+  Person(this.firstName, this.lastName, this.address);
+}
+
+Person person;
+
+main() {
+  person = new Person('Bob', 'Smith', new Address('Main St', 'Metropolis', '11122'));
+}
+
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Custom Elements (pt 1)</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+    <p> The main HTML page. </p>
+
+<pre class="prettyprint lang-html" data-lang="HTML">
+&lt;input type=&quot;text&quot; id=&quot;new-todo&quot;&gt;
+
+&lt;button on-click=&quot;createNewTodo()&quot;&gt;
+  Create New Todo
+&lt;/button&gt;
+
+&lt;ul template id=&quot;todos&quot; iterate=&quot;todo in todoItems&quot;&gt;
+  &lt;li&gt;
+    &lt;x-todo-item bind-todo=&quot;todo&quot;&gt;&lt;/x-todo-item&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
+      <h2>Custom Elements (pt 2)</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+      <p> The custom Element. </p>
+
+<pre class="prettyprint lang-html" data-lang="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;element name=&quot;x-todo-item&quot; constructor=&quot;TodoItemComponent&quot;
+             apply-author-styles=&quot;&quot; extends=&quot;div&quot;&gt;
+      &lt;template&gt;
+        &lt;label class=&quot;{{ completeClass }}&quot;&gt;
+          &lt;input type=&quot;checkbox&quot; on-change=&quot;toggle()&quot;&gt;
+          &lt;span&gt;{{ todo.actionItem }}&lt;/span&gt;
+        &lt;/label&gt;
+      &lt;/template&gt;
+      &lt;script type=&quot;application/dart&quot; src=&quot;TodoItemComponent.dart&quot;&gt;&lt;/script&gt;
+    &lt;/element&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+</article>
+
+</slide>
+
+<slide>
+
+    <hgroup>
+      <h2>Custom Elements (pt 3)</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+      <p> The custom element class definition. </p>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+import 'package:web_ui/web_ui.dart';
+import 'models.dart';
+
+class TodoItemComponent extends WebComponent {
+  TodoItem todo;
+  
+  toggle() =&gt; todo.toggle();
+  
+  String get completeClass => todo.complete ? 'completed' : '';
+}
+</pre>
+
+</article>
+
+</slide>
+
+
+<slide>
+    <hgroup>
+      <h2>Custom Elements (pt 4)</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+      <p> The model class. </p>
+
+<pre class="prettyprint lang-dart" data-lang="Dart">
+library models;
+
+class TodoItem {
+  String actionItem;
+  bool complete = false;
+  
+  TodoItem(this.actionItem);
+  
+  toggle() => complete = !complete;
+}
+
+</pre>
+
+</article>
+ 
+</slide>
+
+<slide>
+  
+    <hgroup>
       <h2>Lifecycle Events</h2>
     </hgroup>
 
