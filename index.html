@@ -63,7 +63,8 @@ URL: https://code.google.com/p/io-2012-slides
 <slide>
 
   <hgroup>
-    <h1>Please run this preso in <a href="https://www.google.com/intl/en/chrome/browser/canary.html">Chrome Canary</a></h1>
+    <h1>Please run this preso in a browser that supports
+      &lt;template&gt;, Shadow DOM, and more.</h1>
     <h2>Otherwise the demos might not work</h2>
   </hgroup>
 
@@ -1050,7 +1051,7 @@ document.body.appendChild(tabs);
     <article>
       <div class="centered" style="margin-bottom: 20px"><img src="images/varuca-salt.jpg" class="reflect"></div>
       <ul>
-        <li>Shadow DOM, &lt;template&gt; coming real soon to Chrome</li>
+        <li>Shadow DOM, &lt;template&gt; are in Chrome 25</li>
         <li>There's another option...</li>
       </ul>
     </article>
@@ -1278,7 +1279,11 @@ void main() {
 
 <slide>
   <article class="flexbox vcenter">
-    <img src="images/tree-shaking/dart-tree-shaking.png">
+    <img src="images/tree-shaking/dart-tree-shaking.png" width="600">
+
+    <p>
+      <a href="http://blog.sethladd.com/2013/01/minification-is-not-enough-you-need.html" target="_blank">More details</a>
+    </p>
   </article>
 </slide>
 
@@ -1329,12 +1334,12 @@ void main() {
   <article>
     <ul class="build">
       <li>Simple data binding - HelloWorld.html</li>
-      <li>Timer bindings w/ lifecycle events - clock_page.html</li>
       <li>Conditionals - Conditional.html</li>
       <li>Iterations - Iterate.html</li>
       <li>Complex Object Binding - ComplexObjectBinding.html</li>
       <li>Custom elements - Ludicrously Simple TODO</li>
       <li>Calling methods on custom elements - CallMethodOnCustomElement.html</li>
+      <li>Timer bindings w/ lifecycle events - clock_page.html</li>
       <li><a href="http://dart-lang.github.com/web-ui/example/todomvc/index.html" target="_blank">TodoMVC Demo</a> -
         <a href="https://github.com/dart-lang/web-ui/tree/master/example/todomvc" target="_blank">code</a></li>
       <li><a href="http://kevmoo.github.com/widget.dart/" target="_blank">Bootstrap widgets demo</a> -
@@ -1358,15 +1363,15 @@ void main() {
 </pre>
 
 <pre class="prettyprint lang-dart" data-lang="Dart">
-import 'dart:math';
+import &#039;package:web_ui/web_ui.dart&#039;;
 
-String superlative = 'awesome';
+@observable
+String superlative = &#039;awesome&#039;;
+int i = 0;
 
-List&lt;String&gt; alternatives = const &lt;String&gt;['wicked cool', 'sweet', 'fantastic'];
+List&lt;String&gt; alternatives = const &lt;String&gt;[&#039;wicked cool&#039;, &#039;sweet&#039;, &#039;fantastic&#039;];
 
-Random random = new Random();
-
-changeIt() =&gt; superlative = alternatives[random.nextInt(3)];
+changeIt() =&gt; superlative = alternatives[i++ % alternatives.length];
 
 main() { }
 </pre>
@@ -1398,12 +1403,12 @@ main() { }
 </pre>
 
 <pre class="prettyprint lang-dart" data-lang="Dart">
-Map<String, String> languageExamples = <String, String>{
-  'js': 'function Person(firstName, lastName) { ... };',
-  'java': 'public class Person { ... }'
+Map languageExamples = {
+  &#039;js&#039;: &#039;function Person(firstName, lastName) { ... };&#039;,
+  &#039;java&#039;: &#039;public class Person { ... }&#039;
 };
 
-String langChoice = '';
+String langChoice = &#039;&#039;;
 
 main() { }
 </pre>
@@ -1670,6 +1675,35 @@ class Clock extends WebComponent {
  
 </slide>
 
+<slide>
+  
+    <hgroup>
+      <h2>Timer bindings with lifecycle events</h2>
+    </hgroup>
+
+    <article class="smaller">
+
+<pre class="prettyprint lang-html" data-lang="HTML">
+class Clock extends WebComponent {
+  @observable
+  DateTime time = new DateTime.now();
+  Timer timer;
+  
+  inserted() {
+    timer = new Timer.repeating(new Duration(seconds:1), (_) {
+      time = new DateTime.now();
+    });
+  }
+  
+  removed() {
+    timer.cancel();
+  }
+}
+</pre>
+
+</article>
+ 
+</slide>
 
 <slide class="fill highlight nobackground" style="background-image: url(images/chocolate-peanut-butter.jpg)">
   <hgroup>
